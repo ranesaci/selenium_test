@@ -44,7 +44,7 @@ public class SeleniumTest {
 				}
 				
 			}
-		}, new Date(), 10000);
+		}, new Date(), DELAY);
 		 
 		//runClickJob();
 		
