@@ -1,6 +1,9 @@
 package seleniun_test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,13 +34,14 @@ public class SeleniumTest {
 					runClickJob();
 					count++;
 					System.out.println("Count is >>>>>>>>>"+count);
+					printDateAndTime();
 					/*if(null != timerForMinDispaly ) {
 						timerForMinDispaly.cancel();
 					}
 					synchronized (SeleniumTest.class) {
 						counMins=0;
 					}*/
-					invokeMinDisplay();
+					//invokeMinDisplay();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -75,6 +79,17 @@ public class SeleniumTest {
 		Thread.sleep(10000);
 		driver.close();
 	}
+	private static void printDateAndTime() {
+		Date today = new Date();
+	     
+        //displaying this date on IST timezone
+        DateFormat df = new SimpleDateFormat("dd-MM-yy HH:mm:SS z");
+        df.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+        String IST = df.format(today);
+        System.out.println("Date in Indian Timezone (IST) : " + IST);
+		
+	}
+
 	private static void invokeMinDisplay() {
 		Timer timerForMinDispaly = new Timer("my_timer");
 		//System.out.println("Thread.currentThread().getName():"+Thread.currentThread().getName());
