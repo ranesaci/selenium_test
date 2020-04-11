@@ -58,13 +58,15 @@ public class SeleniumTest {
 	private static void runClickJob() throws InterruptedException {
 		// System.setProperty("webdriver.ie.driver",
 		// "C:\\Users\\sachin\\Downloads\\IEDriverServer_x64_3.4.0\\IEDriverServer.exe");
+		WebDriver driver = null;
+		try {
 		System.setProperty("webdriver.gecko.driver", CHROME_DRIVER_UNIX);
 
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.addArguments("disable-infobars");
 		chromeOptions.addArguments("start-maximized");
 		
-		WebDriver driver = new ChromeDriver(chromeOptions);
+		driver = new ChromeDriver(chromeOptions);
 		driver.manage().deleteAllCookies();
 		driver.get(URL);
 		// driver.manage().window().maximize();
@@ -81,7 +83,13 @@ public class SeleniumTest {
 		 * //driver.findElement(By.id("vote_btn")).click();
 		 */
 		Thread.sleep(5000);
-		driver.close();
+		//driver.close();
+		
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			driver.quit();
+		}
 	}
 
 	private static void printDateAndTime() {
