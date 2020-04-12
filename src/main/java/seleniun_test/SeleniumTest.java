@@ -88,7 +88,9 @@ public class SeleniumTest {
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}finally {
+			if(null != driver) {
 			driver.quit();
+			}
 		}
 	}
 
